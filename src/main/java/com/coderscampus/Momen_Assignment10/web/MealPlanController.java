@@ -1,22 +1,31 @@
 package com.coderscampus.Momen_Assignment10.web;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.coderscampus.Momen_Assignment10.dto.DayResponse;
 import com.coderscampus.Momen_Assignment10.dto.WeekResponse;
+import com.coderscampus.Momen_Assignment10.service.MealPlanService;
 
+@RestController
 public class MealPlanController {
 
-	@GetMapping("mealplanner/week")
+	@Autowired
+	private MealPlanService mealPlanService;
 
+	@GetMapping("mealplanner/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(String numCalories, String diet, String exclusions) {
-		return null;
+		return mealPlanService.fetchingDataFromSpoonacular(numCalories, diet, exclusions, "week",
+				WeekResponse.class);
 	}
 
 	@GetMapping("mealplanner/day")
-
 	public ResponseEntity<DayResponse> getDayMeals(String numCalories, String diet, String exclusions) {
-		return null;
+
+		return mealPlanService.fetchingDataFromSpoonacular(numCalories, diet, exclusions, 
+				"day", DayResponse.class);
+		
 	}
 }
