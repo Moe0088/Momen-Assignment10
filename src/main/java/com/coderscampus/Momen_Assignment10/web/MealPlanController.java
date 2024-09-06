@@ -18,15 +18,15 @@ public class MealPlanController {
 
 	@GetMapping("mealplanner/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(@RequestParam String numCalories, @RequestParam String diet, @RequestParam String exclusions) {
-		return mealPlanService.fetchingDataFromSpoonacular(numCalories, diet, exclusions, "week",
+		return mealPlanService.fetchingDataFromSpoonacular("week",numCalories, diet, exclusions,
 				WeekResponse.class);
 	}
 
 	@GetMapping("mealplanner/day")
 	public ResponseEntity<DayResponse> getDayMeals( @RequestParam String numCalories, @RequestParam String diet, @RequestParam String exclusions) {
 
-		return mealPlanService.fetchingDataFromSpoonacular(numCalories, diet, exclusions, 
-				"day", DayResponse.class);
+		return mealPlanService.fetchingDataFromSpoonacular("day",numCalories, diet, exclusions,
+				 DayResponse.class);
 		
 	}
 }

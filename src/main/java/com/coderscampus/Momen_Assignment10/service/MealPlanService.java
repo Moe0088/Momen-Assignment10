@@ -1,6 +1,7 @@
 package com.coderscampus.Momen_Assignment10.service;
 
 import java.net.URI;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.ResponseEntity;
@@ -19,8 +20,8 @@ public class MealPlanService {
 
 	RestTemplate rt = new RestTemplate();
 
-	public <T> ResponseEntity<T> fetchingDataFromSpoonacular(String numCalories, String diet, String exclusions,
-			String timeFrame, Class<T> responseClass) {
+	public <T> ResponseEntity<T> fetchingDataFromSpoonacular(String timeFrame, String numCalories, String diet,
+															 String exclusions, Class<T> responseClass) {
 
 		URI uri = buildUrl(timeFrame, numCalories, diet, exclusions);
 
@@ -31,9 +32,9 @@ public class MealPlanService {
 	public URI buildUrl(String timeFrame, String numCalories, String diet, String exclusions) {
 		return UriComponentsBuilder.fromHttpUrl(urlBase + urlMealPlan)
 				.queryParam("timeFrame", timeFrame)
-				.queryParam("targetCalories", numCalories)
-				.queryParam("diet", diet)
-				.queryParam("exclude", exclusions)
+				.queryParam("targetCalories", Optional.ofNullable(numCalories))
+				.queryParam("diet", Optional.ofNullable(diet))
+				.queryParam("exclude", Optional.ofNullable(exclusions))
 				.queryParam("apiKey", apiKey)
 				.build()
 				.toUri();
