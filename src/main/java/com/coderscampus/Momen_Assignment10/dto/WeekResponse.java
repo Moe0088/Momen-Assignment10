@@ -5,18 +5,18 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class WeekResponse {
-	@JsonProperty("meals")
-	private List<Meals> meals;
+	@JsonProperty("week")
+	private WeekDays week;
 
 	@JsonProperty("nutrients")
 	private Nutrients nutrients;
 
-	public List<Meals> getMeals() {
-		return meals;
+	public WeekDays getWeek() {
+		return week;
 	}
 
-	public void setMeals(List<Meals> meals) {
-		this.meals = meals;
+	public void setWeek(WeekDays week) {
+		this.week = week;
 	}
 
 	public Nutrients getNutrients() {
@@ -26,5 +26,4 @@ public class WeekResponse {
 	public void setNutrients(Nutrients nutrients) {
 		this.nutrients = nutrients;
 	}
-
 }

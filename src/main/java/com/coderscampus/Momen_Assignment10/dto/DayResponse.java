@@ -12,7 +12,6 @@ public class DayResponse {
 	private Nutrients nutrients;
 
 
-
 	public List<Meals> getMeals() {
 		return meals;
 	}

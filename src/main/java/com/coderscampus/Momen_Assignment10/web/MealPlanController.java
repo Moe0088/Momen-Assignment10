@@ -16,11 +16,17 @@ public class MealPlanController {
 	@Autowired
 	private MealPlanService mealPlanService;
 
+
+
+
+
 	@GetMapping("mealplanner/week")
 	public ResponseEntity<WeekResponse> getWeekMeals(@RequestParam String numCalories, @RequestParam String diet, @RequestParam String exclusions) {
 		return mealPlanService.fetchingDataFromSpoonacular("week",numCalories, diet, exclusions,
 				WeekResponse.class);
 	}
+
+
 
 	@GetMapping("mealplanner/day")
 	public ResponseEntity<DayResponse> getDayMeals( @RequestParam String numCalories, @RequestParam String diet, @RequestParam String exclusions) {
