@@ -21,7 +21,9 @@ public class MealPlanController {
 
 
 	@GetMapping("mealplanner/week")
-	public ResponseEntity<WeekResponse> getWeekMeals(@RequestParam String numCalories, @RequestParam String diet, @RequestParam String exclusions) {
+	public ResponseEntity<WeekResponse> getWeekMeals(@RequestParam(required = false) String numCalories,
+													 @RequestParam (required = false) String diet,
+													 @RequestParam (required = false) String exclusions) {
 		return mealPlanService.fetchingDataFromSpoonacular("week",numCalories, diet, exclusions,
 				WeekResponse.class);
 	}
@@ -29,7 +31,9 @@ public class MealPlanController {
 
 
 	@GetMapping("mealplanner/day")
-	public ResponseEntity<DayResponse> getDayMeals( @RequestParam String numCalories, @RequestParam String diet, @RequestParam String exclusions) {
+	public ResponseEntity<DayResponse> getDayMeals( @RequestParam (required = false) String numCalories,
+													@RequestParam (required = false) String diet,
+													@RequestParam (required = false)String exclusions) {
 
 		return mealPlanService.fetchingDataFromSpoonacular("day",numCalories, diet, exclusions,
 				 DayResponse.class);
