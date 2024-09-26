@@ -8,13 +8,13 @@ public class Meals {
 	private String id;
 	@JsonProperty("title")
 	private String title;
-	@JsonProperty("image type")
+	@JsonProperty("imageType")
 	private String imageType;
-	@JsonProperty("ready in minutes")
+	@JsonProperty("readyInMinutes")
 	private String readyInMinutes;
 	@JsonProperty("servings")
 	private String servings;
-	@JsonProperty("source Url")
+	@JsonProperty("sourceUrl")
 	private String sourceUrl;
 
 	public String getId() {

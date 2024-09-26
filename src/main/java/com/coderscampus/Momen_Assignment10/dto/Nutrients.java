@@ -9,8 +9,8 @@ public class Nutrients {
 	private String carbohydrates;
 	@JsonProperty("fat")
 	private String fat;
-	@JsonProperty("protien")
-	private String protien;
+	@JsonProperty("protein")
+	private String protein;
 
 	public String getCalories() {
 		return calories;
@@ -37,11 +37,11 @@ public class Nutrients {
 	}
 
 	public String getProtien() {
-		return protien;
+		return protein;
 	}
 
 	public void setProtien(String protien) {
-		this.protien = protien;
+		this.protein = protien;
 	}
 
 }
