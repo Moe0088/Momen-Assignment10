@@ -30,15 +30,22 @@ public class MealPlanService {
 	}
 
 	public URI buildUrl(String timeFrame, String numCalories, String diet, String exclusions) {
-		return UriComponentsBuilder.fromHttpUrl(urlBase + urlMealPlan)
+		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(urlBase + urlMealPlan)
 				.queryParam("timeFrame", timeFrame)
-				.queryParam("apiKey", apiKey)
-				.queryParam("targetCalories", numCalories)
-				.queryParam("diet", diet)
-				.queryParam("exclude", exclusions)
+				.queryParam("apiKey", apiKey);
 
-				.build()
-				.toUri();
+		if (numCalories != null) {
+			uriBuilder.queryParam("targetCalories", numCalories);
+		}
+		if (diet != null) {
+			uriBuilder.queryParam("diet", diet);
+		}
+		if (exclusions != null) {
+			uriBuilder.queryParam("exclude", exclusions);
+		}
+
+
+		return uriBuilder.build().toUri();
 
 	}
 
