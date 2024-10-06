@@ -11,42 +11,19 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 @Service
 public class MealPlanService {
-	@Value("${spoonacular.api.key}")
-	private String apiKey;
-	@Value("${spoonacular.urls.base}")
-	private String urlBase;
-	@Value("${spoonacular.urls.mealplan}")
-	private String urlMealPlan;
-
-	RestTemplate rt = new RestTemplate();
-
-	public <T> ResponseEntity<T> fetchingDataFromSpoonacular(String timeFrame, String numCalories, String diet,
-															 String exclusions, Class<T> responseClass) {
-
-		URI uri = buildUrl(timeFrame, numCalories, diet, exclusions);
-
-		return rt.getForEntity(uri, responseClass);
-
-	}
-
-	public URI buildUrl(String timeFrame, String numCalories, String diet, String exclusions) {
-		UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromHttpUrl(urlBase + urlMealPlan)
-				.queryParam("timeFrame", timeFrame)
-				.queryParam("apiKey", apiKey);
-
-		if (numCalories != null) {
-			uriBuilder.queryParam("targetCalories", numCalories);
-		}
-		if (diet != null) {
-			uriBuilder.queryParam("diet", diet);
-		}
-		if (exclusions != null) {
-			uriBuilder.queryParam("exclude", exclusions);
-		}
 
 
-		return uriBuilder.build().toUri();
+    RestTemplate restTemplate = new RestTemplate();
+    private final SpoonacularApiService spoonacularApiService;
 
-	}
+    public MealPlanService(SpoonacularApiService spoonacularApiService) {
+        this.spoonacularApiService = spoonacularApiService;
+    }
 
+    public <T> ResponseEntity<T> getDayWeekPlan(String timeFrame, String numCalories, String diet, String exclusions, Class<T> responseClass) {
+        URI uri = spoonacularApiService.fetchingDataFromSpoonacular(timeFrame, numCalories, diet, exclusions);
+        return restTemplate.getForEntity(uri, responseClass);
+    }
 }
+
+

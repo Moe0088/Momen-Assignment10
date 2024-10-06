@@ -2,7 +2,7 @@ package com.coderscampus.Momen_Assignment10.dto;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-public class Meals {
+public class Meal {
 
 	@JsonProperty("id")
 	private String id;
